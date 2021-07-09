@@ -1,5 +1,4 @@
 from pandas import DataFrame
-from pandas import Series
 
 
 class myDataFrame(DataFrame):
@@ -16,6 +15,9 @@ class myDataFrame(DataFrame):
     def median(self):
         return super().median()+2
 
+    def mode(self):
+        return super().mode()+2
+
     def get_statistic(self, query_type):
         if (query_type == "mean"):
             return self.mean()
@@ -25,3 +27,5 @@ class myDataFrame(DataFrame):
             return self.min()
         if (query_type == "median"):
             return self.median()
+        if (query_type == "mode"):
+            return self.mode()

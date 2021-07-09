@@ -1,4 +1,5 @@
 
+from datetime import date
 from my_data_frame import myDataFrame as DataFrame
 from condition.create_condition import createCondition
 from typing import List
@@ -33,9 +34,13 @@ class Executor:
 
         query_type, conditions_str = query.split("(", 1)
 
-        data = self.df[colunm]
-
+        # data = self.df[colunm]
+        data = self.df
         condition = createCondition(conditions_str)
-        final_data = DataFrame(condition.filter(data))
-        print(final_data)
-        print("Response: ", final_data.get_statistic(query_type).values[0])
+        final_data = condition.filter(data)
+        final_data = DataFrame(final_data[colunm])
+        # print(final_data)
+
+        print("Response: ", final_data.get_statistic(query_type))
+
+

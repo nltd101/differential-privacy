@@ -1,3 +1,4 @@
+# import subprocess
 import numpy as np
 from condition.create_condition import createCondition
 import pandas as pd
@@ -28,5 +29,8 @@ import sys
 df = pd.read_csv("adult.csv")
 execute = Executor(df)
 
-query = "workclass.mean({$and:[{$gt:20},{$lt:30}]})"
+query = "fnlwgt.mean({$and:[{$gt:(age:20)},{$lt:(age:30)}]})"
 execute.execute(query)
+
+
+
