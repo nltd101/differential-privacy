@@ -1,5 +1,18 @@
+from errors import INVALID_COLUNM
 from pandas import DataFrame
-
+from sensitivities import Sensitivities
+import numpy as np
+epsilon = 0.1
+def noise(colunm,method,epsilon):
+    if (colunm not in Sensitivities.keys()):
+        raise Exception(INVALID_COLUNM)
+    
+    if (method not in Sensitivities[colunm].keys()):
+        raise Exception("Invalid query "+method)
+    sensitivity= float(Sensitivities[colunm][method])
+    print(type(sensitivity),type(epsilon))
+    return np.random.laplace(0,sensitivity*1.0/epsilon)
+  
 
 class myDataFrame(DataFrame):
 
@@ -18,14 +31,21 @@ class myDataFrame(DataFrame):
     def mode(self):
         return super().mode()+2
 
-    def get_statistic(self, query_type):
+    def get_statistic(self, colunm,query_type):
+      
         if (query_type == "mean"):
-            return self.mean()
+            return self[colunm].mean()+noise(colunm, query_type, epsilon)
         if (query_type == "max"):
-            return self.max()
+            return self[colunm].max()+noise(colunm, query_type, epsilon)
         if (query_type == "min"):
-            return self.min()
+            return self[colunm].min()+noise(colunm, query_type, epsilon)
         if (query_type == "median"):
-            return self.median()
+            return self[colunm].median()+noise(colunm, query_type, epsilon)
         if (query_type == "mode"):
-            return self.mode()
+            return self[colunm].mode()+noise(colunm, query_type, epsilon)
+        if (query_type == "sum"):
+            return self[colunm].sum()+noise(colunm, query_type, epsilon)
+        if (query_type=="count"):
+            return self[colunm].count()+noise(colunm, query_type, epsilon)
+        else:
+            raise Exception("Invalid query "+query_type)

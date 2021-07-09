@@ -37,10 +37,10 @@ class Executor:
         # data = self.df[colunm]
         data = self.df
         condition = createCondition(conditions_str)
-        final_data = condition.filter(data)
-        final_data = DataFrame(final_data[colunm])
+        final_data = DataFrame(condition.filter(data))
+
         # print(final_data)
 
-        print("Response: ", final_data.get_statistic(query_type))
+        print("Response: ", final_data.get_statistic(colunm,query_type))
 
 
