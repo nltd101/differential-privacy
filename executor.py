@@ -58,7 +58,6 @@ class Executor:
         self.colunm_epsilon_dict[colunm] = self.colunm_epsilon_dict[colunm] -(final_data.shape[0]/df.shape[0])* budget
         print("Response: ", statistic)
 
-
 df=pd.read_csv("adult.csv")
 e=Executor(df)
 try:
