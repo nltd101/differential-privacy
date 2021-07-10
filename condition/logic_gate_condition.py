@@ -16,13 +16,13 @@ class LogicGateCondition(Condition):
             list_args (List): list of arguments
 
         Raises:
-            Exception: Invalid syntax
+            QueryException: Invalid syntax
         """
         super().__init__()
         self.code: int = code
         # in the logic conditon container, sub condition in [ ]
         if (parameters[0] != "[" or parameters[-1] != "]"):
-            raise Exception(INVALID_SYNTAX)
+            raise QueryException(INVALID_SYNTAX)
         parameters = parameters[1:-1]
         if code == NOT:
             # 1 condition

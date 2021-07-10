@@ -17,7 +17,7 @@ def createCondition(conditions_str: str) -> Condition:
         Condition: A condition was created
     """
     if conditions_str[0] != "{" or conditions_str[-1] != "}":
-        raise Exception(INVALID_SYNTAX)
+        raise QueryException(INVALID_SYNTAX)
     conditions_str = conditions_str[1:-1]
     type_condition, parameters_str = conditions_str.split(":", 1)
     if (type_condition in comparative_condition.keys()):
@@ -25,4 +25,4 @@ def createCondition(conditions_str: str) -> Condition:
     elif (type_condition in logic_gate_condition.keys()):
         return LogicGateCondition(logic_gate_condition[type_condition], parameters_str)
     else:
-        raise Exception(INVALID_OPERATOR)
+        raise QueryException(INVALID_OPERATOR)

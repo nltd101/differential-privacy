@@ -18,7 +18,7 @@ class ComparativeCondition(Condition):
 
         self.code: int = code
         if parameters[0] != "(" or parameters[-1] != ")":
-            raise Exception(INVALID_SYNTAX)
+            raise QueryException(INVALID_SYNTAX)
         parameters = parameters[1:-1]
         if (parameters.find(":") != -1):
             self.parameters.extend(parameters.split(":", 1))
@@ -32,7 +32,7 @@ class ComparativeCondition(Condition):
             data (DataFrame): previous data
 
         Raises:
-            Exception: Invalid operator when operator in unknow
+            QueryException: Invalid operator when operator in unknow
 
         Returns:
             DataFrame: filtered data
@@ -50,4 +50,4 @@ class ComparativeCondition(Condition):
         elif self.code == EQUAL_TO:
             return data[data[self.parameters[0]] == constant]
         else:
-            raise Exception(INVALID_OPERATOR)
+            raise QueryException(INVALID_OPERATOR)

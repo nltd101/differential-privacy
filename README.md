@@ -77,7 +77,7 @@ pip install -r requirements.txt
 ```
 
 ## Sử dụng
-
+Sử dụng [python](https://www.python.org/downloads/windows/) để chạy chương trình
 ```bash
 python main.py
 ```
