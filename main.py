@@ -18,8 +18,8 @@ def main(argv):
         try:
             query = input("Write you query: \n")
             execute.execute(query)
-        except Exception as e:
-            handle_errors(e)
+        except QueryException as e:
+            print(e)
 
 
 try:

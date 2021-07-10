@@ -44,23 +44,26 @@ class Executor:
         query_type, conditions_str = query.split("(", 1)
 
         data = self.df
-        condition = createCondition(conditions_str)
-        final_data = DataFrame(condition.filter(data))
-
+        if (conditions_str!=""):
+            condition = createCondition(conditions_str)
+            final_data = DataFrame(condition.filter(data))
+        final_data = DataFrame(data)
        
         if (self.colunm_epsilon_dict[colunm] <= 0):
             raise QueryException(LIMID_QUERY_PER_COLUNM, colunm)
 
-        self.colunm_epsilon_dict[colunm] = self.colunm_epsilon_dict[colunm] - self.epsilon
 
-        print("Response: ", final_data.get_statistic(colunm,query_type,self.epsilon))
+
+        statistic, budget= final_data.get_statistic(colunm,query_type,self.epsilon)
+        self.colunm_epsilon_dict[colunm] = self.colunm_epsilon_dict[colunm] -(final_data.shape[0]/df.shape[0])* budget
+        print("Response: ", statistic)
 
 
 df=pd.read_csv("adult.csv")
 e=Executor(df)
 try:
  for i in range(58):
-    e.execute("workclass.count({$gt:(age:30))")
+    e.execute("workclass.count()")
     print(i)
 except QueryException as e:
     print(e)
