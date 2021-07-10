@@ -37,7 +37,7 @@ Ký hiệu | Toán tử | Số toán tử con
 
 * **Ví dụ 3** ​
 
-```json
+```base
 {
 ​$or:[
 ​ {$gt:(age:30)},
