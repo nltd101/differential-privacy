@@ -85,5 +85,3 @@ Sử dụng [python](https://www.python.org/downloads/) để chạy chương tr
 python main.py
 ```
 
-## Đóng góp
-Đối với các yêu cầu thay đổi, xin hãy liên lạc và thảo luận với tôi về vấn đề này.
