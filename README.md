@@ -66,6 +66,7 @@ Tương đương với điều kiện sau:
 * `count`: số lượng
 * `median`: ví trí giữa
 * `sum`: tổng
+* `variance`: phương sai
 *Lưu ý: Đối với các query số thì dữ liệu ở cột phải là số.*
 
 ## Cài đặt

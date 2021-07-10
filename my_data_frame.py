@@ -49,6 +49,9 @@ class myDataFrame(DataFrame):
     def mode(self):
         return super().mode()+2
 
+    def var(self):
+        return super().var()+3
+
     def get_statistic(self, colunm:str, query_type:str, epsilon:float)->Tuple:
         """compute statistic of colunm with epsilon
 
@@ -78,5 +81,7 @@ class myDataFrame(DataFrame):
             return self[colunm].sum()+self.noise(colunm, query_type, epsilon),epsilon
         if (query_type=="count"):
             return self[colunm].count()+self.noise(colunm, query_type, epsilon),epsilon
+        if (query_type == "variance"):
+            return self[colunm].var()+self.noise(colunm,query_type,epsilon),epsilon
         else:
             raise QueryException(INVALID_QUERY, query_type)
