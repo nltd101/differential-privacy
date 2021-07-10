@@ -63,7 +63,7 @@ df=pd.read_csv("adult.csv")
 e=Executor(df)
 try:
  for i in range(58):
-    e.execute("workclass.count()")
+    e.execute("age.variance()")
     print(i)
 except QueryException as e:
     print(e)

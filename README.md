@@ -59,7 +59,7 @@ Tương đương với điều kiện sau:
 * `[Tên cột].[Loại query]([Toán tử])`
 * Ví dụ: `age.mean({$eq:(workclass:Private)})` kết quả trả về trung bình `age` của các record có `wordclass` là `Private`
 
-#### Danh sách loại query:
+#### Danh sách loại query
 * `min`: giá trị nhỏ nhất
 * `max`: giá tị lớn nhất
 * `mean`: trung bình
@@ -67,6 +67,7 @@ Tương đương với điều kiện sau:
 * `median`: ví trí giữa
 * `sum`: tổng
 * `variance`: phương sai
+
 *Lưu ý: Đối với các query số thì dữ liệu ở cột phải là số.*
 
 ## Cài đặt
