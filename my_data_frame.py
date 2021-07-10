@@ -3,14 +3,28 @@ from pandas import DataFrame
 from sensitivities import Sensitivities
 import numpy as np
 epsilon = 0.1
-def noise(colunm,method,epsilon):
+def noise(colunm:str,method:str,epsilon:float)->float:
+    """return the noise based on method, colunm, epsilon
+
+    Args:
+        colunm (str): a name of colunm
+        method (str): a name of method (sum,mean)
+        epsilon (float): value of epsilon
+
+    Raises:
+        Exception: INVALID COLUNM
+        Exception: INVALID QUERY
+
+    Returns:
+        float: a noise value
+    """    
     if (colunm not in Sensitivities.keys()):
-        raise Exception(INVALID_COLUNM)
+        raise Exception(colunm+"\'s not support "+method+" method")
     
     if (method not in Sensitivities[colunm].keys()):
         raise Exception("Invalid query "+method)
     sensitivity= float(Sensitivities[colunm][method])
-    print(type(sensitivity),type(epsilon))
+  
     return np.random.laplace(0,sensitivity*1.0/epsilon)
   
 

@@ -11,7 +11,7 @@ def handle_errors(e:Any):
     Args:
         e (Any): code err or text
     """    
-    print("huhu",e)
+
     if (str(e) == str(INVALID_COLUNM)):
         print("INVALID_COLUNM")
     elif (str(e) ==str(INVALID_OPERATOR)):

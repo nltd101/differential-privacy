@@ -44,7 +44,6 @@ class ComparativeCondition(Condition):
         else:
             constant = self.parameters[1]
         if self.code == GREATE_THAN:
-            print("hahaa", self.parameters)
             return data[data[self.parameters[0]] > constant]
         elif self.code == LESS_THAN:
             return data[data[self.parameters[0]] < constant]
