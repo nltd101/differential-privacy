@@ -7,10 +7,9 @@ from executor import Executor
 import sys
 
 
-def main(argv):
+def main():
     # path = input("Input the path of the dataset: ") if (
     #     len(argv) == 1) else argv[1]
-
 
     df = pd.read_csv("adult.csv")
     execute = Executor(df)
@@ -23,12 +22,8 @@ def main(argv):
 
 
 try:
-    main(sys.argv)
+    main()
 except KeyboardInterrupt:
     print("\nPress Ctrl-C to terminate while statement")
 except Exception as e:
     print("Error:", e)
-
-
-
-

@@ -6,10 +6,9 @@ from sensitivities import Sensitivities
 import numpy as np
 
 
-
 class myDataFrame(DataFrame):
 
-    def noise(self,colunm: str, method: str, epsilon: float) -> float:
+    def noise(self, colunm: str, method: str, epsilon: float) -> float:
         """return the noise based on method, colunm, epsilon
 
         Args:
@@ -31,29 +30,29 @@ class myDataFrame(DataFrame):
                 raise QueryException(NOT_SUPPORT_METHOD, colunm, method)
             sensitivity = float(Sensitivities[colunm][method])
         else:
-            sensitivity=1
+            sensitivity = 1
 
         return np.random.laplace(0, sensitivity*1.0/epsilon)
 
-    def mean(self):
-        return super().mean()
+    # def mean(self):
+    #     return super().mean()
 
-    def max(self):
-        return super().max()
+    # def max(self):
+    #     return super().max()
 
-    def min(self):
-        return super().min()
+    # def min(self):
+    #     return super().min()
 
-    def median(self):
-        return super().median()
+    # def median(self):
+    #     return super().median()
 
-    def mode(self):
-        return super().mode()
+    # def mode(self):
+    #     return super().mode()
 
-    def var(self):
-        return super().var()
+    # def var(self):
+    #     return super().var()
 
-    def get_statistic(self, colunm:str, query_type:str, epsilon:float) -> Tuple:
+    def get_statistic(self, colunm: str, query_type: str, epsilon: float) -> Tuple:
         """compute statistic of colunm with epsilon
 
         Args:
@@ -75,27 +74,28 @@ class myDataFrame(DataFrame):
             noisy_mean = noisy_sum/noisy_count
             return noisy_mean, epsilon
         if (query_type == "max"):
-            return self[colunm].max()+self.noise(colunm, "sum", epsilon),epsilon
+            return self[colunm].max()+self.noise(colunm, "sum", epsilon), epsilon
         if (query_type == "min"):
-            return self[colunm].min()+self.noise(colunm, "sum", epsilon),epsilon
+            return self[colunm].min()+self.noise(colunm, "sum", epsilon), epsilon
         if (query_type == "median"):
-            return self[colunm].median()+self.noise(colunm, "sum", epsilon),epsilon
+            return self[colunm].median()+self.noise(colunm, "sum", epsilon), epsilon
         if (query_type == "mode"):
-            return self[colunm].mode()+self.noise(colunm, "sum", epsilon),epsilon
+            return self[colunm].mode()+self.noise(colunm, "sum", epsilon), epsilon
         if (query_type == "sum"):
-            return self[colunm].sum()+self.noise(colunm, query_type, epsilon),epsilon
-        if (query_type=="count"):
-            return self[colunm].count()+self.noise(colunm, query_type, epsilon),epsilon
+            return self[colunm].sum()+self.noise(colunm, "sum", epsilon), epsilon
+        if (query_type == "count"):
+            return self[colunm].count()+self.noise(colunm, "count", epsilon), epsilon
         if query_type != "variance":
             raise QueryException(INVALID_QUERY, query_type)
-        
-        #calculate variance
+
+        # calculate variance
         partial_epsilon = epsilon/3
+
         square_sum = sum((self[colunm][i])**2 for i in range(self[colunm].count()))
         noisy_square_sum = square_sum + self.noise(colunm, "sum_square", partial_epsilon)
-        noisy_sum  = self[colunm].sum()+self.noise(colunm, "sum", partial_epsilon)
+        noisy_sum = self[colunm].sum()+self.noise(colunm, "sum", partial_epsilon)
         noisy_count = self[colunm].count()+self.noise(colunm, "count", partial_epsilon)
         noisy_mean = noisy_sum/noisy_count
         noisy_var = (1/noisy_count)*(noisy_square_sum - 2*noisy_mean*noisy_sum) + noisy_mean*noisy_mean
-        
+
         return noisy_var, epsilon
