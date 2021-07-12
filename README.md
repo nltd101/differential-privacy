@@ -1,6 +1,6 @@
 
 # Diffential Privacy
-
+- Sử dụng cơ chế laplace
 
 
 ## Một số định nghĩa
