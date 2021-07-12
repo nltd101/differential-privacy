@@ -1,7 +1,7 @@
 
 # Diffential Privacy
 - Sử dụng cơ chế laplace
-
+- Tập dataset [adult.csv](https://www.kaggle.com/wenruliu/adult-income-dataset)
 
 ## Một số định nghĩa
 *Lưu ý:`[Tên cột]` tức là khi sử dụng thay được bằng tên của cột.*
