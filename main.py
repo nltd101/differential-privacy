@@ -28,10 +28,7 @@ except KeyboardInterrupt:
     print("\nPress Ctrl-C to terminate while statement")
 except Exception as e:
     print("Error:", e)
-# execute = Executor(df)
 
-# query = "fnlwgta.mean({$and:[{$gt:(age:20)},{$lt:(age:30)}]})"
-# execute.execute(query)
 
 
 

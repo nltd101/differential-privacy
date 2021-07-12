@@ -24,13 +24,14 @@ class myDataFrame(DataFrame):
         Returns:
             float: a noise value
         """
-        if (colunm not in Sensitivities.keys()):
-           raise QueryException(INVALID_COLUNM, colunm)
-        if (method not in Sensitivities[colunm].keys()):
-            raise QueryException(NOT_SUPPORT_METHOD, colunm, method)
-
-
-        sensitivity = float(Sensitivities[colunm][method])
+        if method not in ["count"]:
+            if (colunm not in Sensitivities.keys()):
+                raise QueryException(INVALID_COLUNM, colunm)
+            if (method not in Sensitivities[colunm].keys()):
+                raise QueryException(NOT_SUPPORT_METHOD, colunm, method)
+            sensitivity = float(Sensitivities[colunm][method])
+        else:
+            sensitivity=1
 
         return np.random.laplace(0, sensitivity*1.0/epsilon)
 

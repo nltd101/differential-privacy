@@ -55,7 +55,7 @@ class Executor:
 
 
         statistic, budget= final_data.get_statistic(colunm,query_type,self.epsilon)
-        self.colunm_epsilon_dict[colunm] = self.colunm_epsilon_dict[colunm] -(final_data.shape[0]/df.shape[0])* budget
+        self.colunm_epsilon_dict[colunm] = self.colunm_epsilon_dict[colunm] -(final_data.shape[0]/self.df.shape[0])* budget
         print("Response: ", statistic)
 
 
