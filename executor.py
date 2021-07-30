@@ -46,7 +46,8 @@ class Executor:
         if (conditions_str != ""):
             condition = createCondition(conditions_str)
             final_data = DataFrame(condition.filter(data))
-        final_data = DataFrame(data)
+        else:
+            final_data = DataFrame(data)
 
         if (self.colunm_epsilon_dict[colunm] <= 0):
             raise QueryException(LIMID_QUERY_PER_COLUNM, colunm)

@@ -34,24 +34,6 @@ class myDataFrame(DataFrame):
 
         return np.random.laplace(0, sensitivity*1.0/epsilon)
 
-    # def mean(self):
-    #     return super().mean()
-
-    # def max(self):
-    #     return super().max()
-
-    # def min(self):
-    #     return super().min()
-
-    # def median(self):
-    #     return super().median()
-
-    # def mode(self):
-    #     return super().mode()
-
-    # def var(self):
-    #     return super().var()
-
     def get_statistic(self, colunm: str, query_type: str, epsilon: float) -> Tuple:
         """compute statistic of colunm with epsilon
 
