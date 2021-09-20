@@ -1,5 +1,5 @@
 
-# Diffential Privacy
+# Differential Privacy
 - Sử dụng cơ chế laplace
 - Dataset [adult.csv](https://www.kaggle.com/wenruliu/adult-income-dataset)
 
