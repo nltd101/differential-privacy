@@ -1,41 +1,41 @@
 
 # Differential Privacy
-- Sử dụng cơ chế laplace
+- Using the Laplace mechanism
 - Dataset [adult.csv](https://www.kaggle.com/wenruliu/adult-income-dataset)
 
-## Một số định nghĩa
-*Lưu ý:`[Tên cột]` tức là khi sử dụng thay được bằng tên của cột.*
-### Bắt cặp so sánh
+## Definitions
+*Note:`[Column Name]` refers to replacing it with the actual column name.*
+### Pairwise Comparison
 
-* ```([Tên cột]:[Giá trị])```
+* ```([Column Name]:[Value])```
 
-* **Ví dụ:** `(age:30)` nghĩa là so sánh `age` với `30`
-### Toán tử so sánh
-* ```{[Toán tử so sánh]:[Cặp so sánh]}```
+* **Example:** `(age:30)` means comparing `age` with `30`
+### Comparison Operators
+* ```{[Comparison Operator]:[Pairwise Comparison]}```
 
-Ký hiệu | Toán tử
+Symbol | Operators
 ------ | ----
 `$gt` | >
 `$lt` | <
 `$eq` | =
 
-*Lưu ý: Các toán tử khác có thể dùng những toán tử trên và toán tử logic **not** phía dưới để suy ra.*
-* **Ví dụ:** `{$gt:(age:30)}` tương đương với `age>30`
+*Note: Other operators can use the above comparison operators and the **not** operator below for inference.*
+* **Example:** `{$gt:(age:30)}` is equivalent to `age>30`
 
-### Toán tử logic
-* ```{[Toán tử logic]:[[Toán tử con],..]}```
+### Logical Operators
+* ```{[Logical Operators]:[[Sub-Operator],..]}```
 
-Ký hiệu | Toán tử | Số toán tử con
+Symbol | Operator | Number of Sub-Operators
 ------ | ---- |---
 `$and` | and | 2
 `$or` | or | 2
 `$not` | not | 1
 
 
-* **Ví dụ 1:**  ​`{$and:[{$gt:(age:30)},{$lt:(age:50)}]}` tương đương với điều kiện `age>30` **và** `age<50` 
-* **Ví dụ 2:**  ​`{$not:[{$gt:(age:30)}]}` tương đương với điều kiện `age<=30` 
+* **Example 1:**  ​`{$and:[{$gt:(age:30)},{$lt:(age:50)}]}` is equivalent to `age>30` **and** `age<50` 
+* **Example 2:**  ​`{$not:[{$gt:(age:30)}]}` is equivalent to `age<=30` 
 
-* **Ví dụ 3** ​
+* **Example 3** ​
 
 ```base
 {
@@ -50,40 +50,40 @@ Ký hiệu | Toán tử | Số toán tử con
 ​    ]
 }
 ```
-Tương đương với điều kiện sau:
+Equivalent to:
 ```
 (age>30) or (age<20 and not workclass==Private)
 ```
 
-### Query hoàn chỉnh
-* `[Tên cột].[Loại query]([Toán tử])`
-* Ví dụ: `age.mean({$eq:(workclass:Private)})` kết quả trả về trung bình `age` của các record có `wordclass` là `Private`
-*Lưu ý: Nếu Toán tử để rỗng thì kết quả sẽ tính toán trên toàn tập dữ liệu.*
-#### Danh sách loại query
-* `min`: giá trị nhỏ nhất
-* `max`: giá tị lớn nhất
-* `mean`: trung bình
-* `count`: số lượng
-* `median`: ví trí giữa
-* `sum`: tổng
-* `variance`: phương sai
-* `mode`: yếu vị 
+### Full Query
+* `[Column].[Query Type]([Operator])`
+* Example: `age.mean({$eq:(workclass:Private)})` returns the average `age` of records with `wordclass` as `Private`
+*Note: If the Operator is left blank, the result will compute on the entire dataset.*
+#### List of Query Types
+* `min`: minimum value
+* `max`: maximum value
+* `mean`: mean
+* `count`: count
+* `median`: median
+* `sum`: sum
+* `variance`: variance
+* `mode`: mode
 
-*Lưu ý: Đối với các query số thì dữ liệu ở cột phải là số.*
+*Note: For numeric queries, the column data must be numeric.*
 
-## Cài đặt
+## Installation
 
-Sử dụng [pip](https://pip.pypa.io/en/stable/) để cài đặt các gói cần thiết.
+Use [pip](https://pip.pypa.io/en/stable/) to install the necessary packages.
 
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Sử dụng
-Sử dụng [python](https://www.python.org/downloads/) để chạy chương trình
+Use [python](https://www.python.org/downloads/) to run the program.
 ```bash
 python main.py
 ```
 
-## Đóng góp
-Đối với các yêu cầu thay đổi, xin hãy liên lạc và thảo luận với tôi về vấn đề này.
+## Contribution
+For change requests, please contact me and discuss the issue with me.
